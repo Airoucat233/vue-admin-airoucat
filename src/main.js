@@ -15,6 +15,8 @@ import router from './router'
 import '@/icons' // icon
 import '@/permission' // permission control
 
+import axios from 'axios'; // 从node_modules目录中导入包
+Vue.prototype.$axios = axios; // 把对象挂载vue中
 /**
  * If you don't want to use mock-server
  * you want to use MockJs for mock api

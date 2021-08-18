@@ -31,6 +31,7 @@ import Layout from '@/layout'
  * all roles can be accessed
  */
 export const constantRoutes = [
+  
   {
     path: '/login',
     component: () => import('@/views/login/index'),
@@ -58,15 +59,21 @@ export const constantRoutes = [
   {
     path: '/example',
     component: Layout,
-    redirect: '/example/table',
+    redirect: '/example/table1',
     name: 'Example',
     meta: { title: 'Example', icon: 'el-icon-s-help' },
     children: [
       {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
+        path: 'table1',
+        name: 'Table1',
+        component: () => import('@/views/table/table1/index'),
+        meta: { title: 'Table1', icon: 'table' }
+      },
+      {
+        path: 'table2',
+        name: 'Table2',
+        component: () => import('@/views/table/table2/index'),
+        meta: { title: '流向查询', icon: 'table' }
       },
       {
         path: 'tree',
@@ -159,13 +166,24 @@ export const constantRoutes = [
       }
     ]
   },
-
+  {
+    path: '/test',
+    component: Layout,
+    meta: { title: '测试', icon: 'dashboard' },
+    children: [{
+      path: 'test1',
+      name: 'Test',
+      component: () => import('@/views/test1/index'),
+      meta: { title: '测试', icon: 'dashboard' }
+    },
+  ]
+  },
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
 
 const createRouter = () => new Router({
-  // mode: 'history', // require service support
+  mode: 'history', // require service support
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRoutes
 })

@@ -36,17 +36,27 @@ module.exports = {
       warnings: false,
       errors: true
     },
+    proxy: { //配置跨域
+      '/api': {
+       target: 'http://localhost:8088/', //后台接口
+       changOrigin: true, //允许跨域
+       pathRewrite: {
+        '^/api': ''// 重写路径
+       }
+      },
+     },
     before: require('./mock/mock-server.js')
   },
   configureWebpack: {
     // provide the app's title in webpack's name field, so that
     // it can be accessed in index.html to inject the correct title.
     name: name,
+    devtool: 'source-map',//调试代码源路径
     resolve: {
       alias: {
         '@': resolve('src')
       }
-    }
+    },
   },
   chainWebpack(config) {
     // it can improve the speed of the first screen, it is recommended to turn on preload
